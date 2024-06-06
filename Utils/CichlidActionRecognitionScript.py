@@ -398,6 +398,8 @@ class ML_model():
                     outputs = model(inputs)
                     loss = criterion(outputs, targets)
                     losses.update(loss.data, inputs.size(0))
+                    
+                    acc = calculate_accuracy(outputs, targets)
                     accuracies.update(acc, inputs.size(0))
                     
                     batch_time.update(time.time() - end_time)
