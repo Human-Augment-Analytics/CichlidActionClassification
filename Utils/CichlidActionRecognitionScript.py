@@ -243,7 +243,7 @@ class ML_model():
             confusion_matrix.to_csv(confusion_matrix_file)
             
             # Learning rate is adjusted dynamically, scheduler stepped based on validation loss
-            scheduler.step(validation_loss)
+            lr_scheduler.step(validation_loss)
             
             # Perform testing every 5 epochs if test data are available
             if i % 5 == 0 and len(test_data) != 0:
@@ -389,7 +389,7 @@ class ML_model():
         end_time = time.time()
         
         for i, (inputs, targets, _) in enumerate(data_loader):
-            data_time.update(time.time() - end.time)
+            data_time.update(time.time() - end_time)
             if not opt.no_cuda:
                 targets = targets.cuda(non_blocking=True)
                 with torch.no_grad():
